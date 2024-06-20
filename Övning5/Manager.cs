@@ -50,13 +50,13 @@ internal class Manager
                 case ConsoleKey.D2:
                     ui.Output("Skriv in registreringsnummret du vill hitta.");
                     string regNr = ui.GetInput();
-                    ui.PrintVehicle(handler.GetFromRegNr(regNr));
+                    ui.PrintVehicle(handler.GetFromRegNr(regNr)!);
                     break;
                 case ConsoleKey.D3:
-                    AddVehicle(handler, ui);
+                    AddVehicle();
                     break;
                 case ConsoleKey.D4:
-                    RemoveVehicle(handler, ui);
+                    RemoveVehicle();
                     break;
                 case ConsoleKey.D5:
                     PrintTypes(handler, ui);
@@ -78,14 +78,14 @@ internal class Manager
         }
     }
 
-    private void RemoveVehicle(IHandler currGarage, IUI ui)
+    private void RemoveVehicle()
     {
         ui.Output("Skriv ut registrerings nummret för fordonet du vill ta bort.");
         string regNr = ui.GetInput();
-        IVehicle? vehicle = currGarage.GetFromRegNr(regNr);
+        IVehicle? vehicle = handler.GetFromRegNr(regNr);
         if (vehicle != null)
         {
-            currGarage.RemoveVehicle(regNr);
+            handler.RemoveVehicle(regNr);
             ui.Output($"Tar bort fordonet:");
             ui.PrintVehicle(vehicle);
         }
@@ -148,12 +148,11 @@ internal class Manager
 
         foreach (var type in types)
         {
-            List<IVehicle> lista = currGarage.NrOfType(type);
-            ui.Output($"Det finns {lista.Count} fordon av typ {type}");
+            ui.Output($"Det finns {currGarage.NrOfType(type)} fordon av typ {type}");
         }
     }
 
-    private void AddVehicle(IHandler handler, IUI ui)
+    private void AddVehicle()
     {
         if (handler.IsFull())
         {

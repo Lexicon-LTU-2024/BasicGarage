@@ -14,7 +14,7 @@
 
         public bool RemoveVehicle(string regNr);
 
-        public List<IVehicle> NrOfType(string type);
+        public int NrOfType(string type);
 
         public bool IsFull();
 

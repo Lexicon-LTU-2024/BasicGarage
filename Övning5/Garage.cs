@@ -13,27 +13,27 @@ namespace Övning5
         private int current;
         private T[] spaces;
 
-        public int Capacity {
-            get
-            {
-                return capacity;
-            }
-        }
+        public int Capacity => capacity;
+        //    get
+        //    {
+        //        return capacity;
+        //    }
+        //}
 
-        public bool IsFull
-        {
-            get
-            {
-                if (current >= capacity)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
+        public bool IsFull => current >= capacity;
+        //{
+        //    get
+        //    {
+        //        if (current >= capacity)
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //}
 
         public Garage(int capacity)
         {
@@ -72,7 +72,7 @@ namespace Övning5
             {
                 if(spaces[i] != null && spaces[i].RegNr.ToLower() == regnr.ToLower())
                 {
-                    spaces[i] = default(T);// null;  // här körs fordonet ut
+                    spaces[i] = default(T)!;// null;  // här körs fordonet ut
                     current--;
                     return true;
                 }
@@ -80,11 +80,11 @@ namespace Övning5
             return false;
         }
 
-        public IQueryable<T> GetQuery()
-        {
-            var query = spaces.Where(p => p != null).AsQueryable();
-            return query;
-        }
+        //public IQueryable<T> GetQuery()
+        //{
+        //    var query = spaces.Where(p => p != null).AsQueryable();
+        //    return query;
+        //}
 
         public IEnumerator<T> GetEnumerator()
         {
